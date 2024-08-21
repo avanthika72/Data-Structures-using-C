@@ -38,5 +38,5 @@ void main()
     printf("\nSpace complexity: %d",20+4*n);
     t++;
     t++;
-    printf("\nTime complexity: %d\n",t)
+    printf("\nTime complexity: %d\n",t);
 }
