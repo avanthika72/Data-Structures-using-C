@@ -8,13 +8,11 @@ void main()
     int choice;
     printf("Enter the length of the stack: ");
     scanf("%d",&n);
-    while(choice!=4)
-    {
+    while (choice!=4) {
         printf("\nChoose required operation:");
         printf("\t1.PUSH \t2.POP \t3.DISPLAY \t4.EXIT - ");
         scanf("%d",&choice);
-        switch(choice)
-        {
+        switch(choice) {
             case 1:
                 push();
                 break;
@@ -32,14 +30,10 @@ void main()
         }
     }
 }
-
-void push()
-{
-    
+void push() {
     if(top==(n-1))
         printf("\nStack Overflow");
-    else
-    {
+    else {
         printf("\nEnter element to be pushed: ");
         scanf("%d",&ele);
         top++;
@@ -47,29 +41,22 @@ void push()
         printf("\n%d successfully pushed at position %d",ele,top+1);
     }
 }
-
-void pop()
-{
+void pop() {
     if(top==-1)
         printf("\nStack Underflow");
-    else
-    {
+    else {
         int ele=stack[top];
         top--;
         printf("\nPopped item is %d",ele);
     }
 }
-
-void display()
-{
+void display() {
     if(top==-1)
         printf("Stack Underflow");
-    else
-    {
+    else {
         int i;
         printf("\nGiven stack is");
-        for(i=top;i>=0;i--)
-        {
+        for(i=top;i>=0;i--) {
             printf("\n%d",stack[i]);
         }
     }
