@@ -4,7 +4,7 @@ void main()
 	int n,i;
 	struct polynomial {
 			int coeff,expo;
-    } poly[10];
+        } poly[10];
 	printf("Enter the number of terms in the polynomial: ");
 	scanf("%d",&n);
 	for(i=0; i<n; i++) {
