@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include<stdio.h>
 void enqueue();
 void dequeue();
 void display();
@@ -29,50 +29,40 @@ void main()
 		}
 	}
 }
-
 void enqueue() {
-	if (rear == max_size-1) {
+	if (rear == max_size-1) 
 		printf("\nQueue Overflow Error!");
-	}
-	else {
-		int ele;
+	else {     
 		printf("\nEnter the element to enqueue: ");
-		scanf("%d",&ele);
+		scanf("%d",&item);
 		if (front == -1 && rear == -1) {
 			rear=0;
 			front=0;
 		}
-		else {
+		else 
 			rear++;
-		}
-		queue[rear]=ele;
+		queue[rear]=item;
 	}
 }
-
 void dequeue() {
-	if (front == -1 && rear == -1) {
+	if (front == -1 && rear == -1)                  
 		printf("\nQueue Underflow Error!");
-	}
 	else {
 		printf("\nDeleted element is %d",queue[front]);
 		if (front == rear) {
 			front=-1;
 			rear=-1;
 		}
-		else {
+		else 
 			front++;
-		}
 	}
 }
-
 void display() {
-	if (front == -1 && rear == -1) {
+	if (front == -1 && rear == -1) 
 		printf("\nQueue Empty!");
-	}
 	else {
 		printf("\nGiven queue is: \n");
-		for (int i=front; i<=rear; i++) {
+		for (int i=front; i<=rear; i++) 
 			printf("%d \t",queue[i]);
-		}
 	}
 }
