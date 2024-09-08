@@ -9,7 +9,7 @@ void main()
 	printf("Enter the size of queue: ");
 	scanf("%d",&max_size);
 	while (choice!=4) {
-		printf("\nEnter Operation to perform on Queue: 1. Enqueue 2. Dequeue 3. Display 4. Exit \n");
+		printf("\nEnter Operation to perform on Queue: 1. Enqueue 2. Dequeue 3. Display 4. Exit - ");
 		scanf("%d",&choice);
 		switch (choice) {
 			case 1: 
@@ -22,18 +22,18 @@ void main()
 				display();
 				break;
 			case 4: 
-				printf("\nSuccessfully exited from the program");
+				printf("Successfully exited from the program");
 				break;
 			default:
-				printf("\nInvalid Input!");
+				printf("Invalid Input!");
 		}
 	}
 }
 void enqueue() {
 	if (rear == max_size-1) 
-		printf("\nQueue Overflow Error!");
+		printf("Queue Overflow Error!");
 	else {     
-		printf("\nEnter the element to enqueue: ");
+		printf("Enter the element to enqueue: ");
 		scanf("%d",&item);
 		if (front == -1 && rear == -1) {
 			rear=0;
@@ -46,9 +46,9 @@ void enqueue() {
 }
 void dequeue() {
 	if (front == -1 && rear == -1)                  
-		printf("\nQueue Underflow Error!");
+		printf("Queue Underflow Error!");
 	else {
-		printf("\nDeleted element is %d",queue[front]);
+		printf("Deleted element is %d",queue[front]);
 		if (front == rear) {
 			front=-1;
 			rear=-1;
@@ -59,7 +59,7 @@ void dequeue() {
 }
 void display() {
 	if (front == -1 && rear == -1) 
-		printf("\nQueue Empty!");
+		printf("Queue Empty!");
 	else {
 		printf("\nGiven queue is: \n");
 		for (int i=front; i<=rear; i++) 
