@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node {
+    int coeff;
+    int expo;
+    struct node *link;
+} *poly1 = NULL, *poly2 = NULL, *psum = NULL, *ptr, *temp;
+
+void display (struct node *p) {
+    p = 
+}
+
+void main() {
+    int i,n1,n2,coefficient,exponent;
+    printf("Enter First Polynomial -");
+    printf("\nEnter number of terms: ");
+    scanf("%d",&n1);
+    for (i=0; i<n1; i++) {
+        printf("Enter coefficient and exponent for term %d: ",i+1);
+        scanf("%d %d", &coefficient, &exponent);
+        insertterm(poly1, coefficient, exponent);
+    }
+    printf("Enter Second Polynomial -");
+    printf("\nEnter number of terms: ");
+    scanf("%d",&n2);
+    for (i=0; i<n2; i++) {
+        printf("Enter coefficient and exponent for term %d: ",i+1);
+        scanf("%d %d", &coefficient, &exponent);
+        insertterm(poly2, coefficient, exponent);
+    }
+    printf("First Polynomial: ");
+    display(poly1);
+    printf("Second Polynomial: ");
+    display(poly2);
+    computesum(poly1,poly2);
+    printf("Sum of the two Polynomials: ");
+    display(psum);
+}
