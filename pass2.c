@@ -82,7 +82,7 @@ int main() {
                 fprintf(object, "%02X", text_len);
                 fseek(object, curr_pos, SEEK_SET);
                 text_len = 0;
-                long text_len_pos = ftell(object);
+                text_len_pos = ftell(object);
                 fprintf(object, "\nT^%06X^00", locctr);
             }
             fprintf(object, "^%s", object_code);
