@@ -5,10 +5,7 @@
 
 int main() {
     FILE *intermediate, *optab, *symtab, *length, *object, *listing;
-    char label[20], opcode[20], operand[20];
-    char optab_code[20], optab_addr[20];
-    char sym_label[20], sym_addr[20];
-    char object_code[30] = "";
+    char label[20], opcode[20], operand[20], optab_code[20], optab_addr[20], sym_label[20], sym_addr[20], object_code[30] = "";
     int locctr, start_addr = 0, prog_length, text_len;
     bool opcode_found, sym_found;
 
@@ -18,11 +15,6 @@ int main() {
     length = fopen("length.txt", "r");
     object = fopen("object_program.txt", "w+");
     listing = fopen("listing.txt", "w");
-
-    if (!intermediate || !optab || !symtab || !length || !object || !listing) {
-        printf("Error: Could not open one or more files.\n");
-        return 1;
-    }
 
     fscanf(length, "%d", &prog_length);
     fscanf(intermediate, "%s %s %s", label, opcode, operand);
@@ -34,12 +26,10 @@ int main() {
         fscanf(intermediate, "%04X %s %s %s", &locctr, label, opcode, operand);
     }
 
-    // --- Begin first text record ---
     text_len = 0;
     long text_len_pos = ftell(object);
     fprintf(object, "T^%06X^00", locctr);  // placeholder for length-00
 
-    // --- Main loop ---
     while (strcmp(opcode, "END") != 0) {
         strcpy(object_code, "");
         opcode_found = false;
@@ -84,12 +74,9 @@ int main() {
         else if (strcmp(opcode, "WORD") == 0) {
             sprintf(object_code, "%06X", atoi(operand));
         }
-
-        // --- Manage text record size (max 30 bytes) ---
         if (strlen(object_code) > 0) {
             int next_len = text_len + (strlen(object_code) / 2);
             if (next_len > 30) {
-                // Close current record by writing its length
                 long curr_pos = ftell(object);
                 fseek(object, text_len_pos + 9, SEEK_SET);
                 fprintf(object, "%02X", text_len);
@@ -102,20 +89,16 @@ int main() {
             text_len += strlen(object_code) / 2;
         }
 
-        // --- Write listing line ---
         fprintf(listing, "%04X \t%s \t%s \t%s \t%s \n", locctr, label, opcode, operand, object_code);
 
-        // --- Read next line (simplified) ---
         fscanf(intermediate, "%04X %s %s %s", &locctr, label, opcode, operand);
     }
 
-    // --- Finalize the last text record ---
     long curr_pos = ftell(object);
     fseek(object, text_len_pos + 9, SEEK_SET);
     fprintf(object, "%02X", text_len);
     fseek(object, curr_pos, SEEK_SET);
 
-    // --- END record ---
     fprintf(listing, "%04X \t%s \t%s \t%s\n", locctr, label, opcode, operand);
     fprintf(object, "\nE^%06X \n", start_addr);
 
