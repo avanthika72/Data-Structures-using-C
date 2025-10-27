@@ -91,7 +91,7 @@ int main() {
 
         fprintf(listing, "%04X \t%s \t%s \t%s \t%s \n", locctr, label, opcode, operand, object_code);
 
-        fscanf(intermediate, "%04X %s %s %s", &locctr, label, opcode, operand);
+        fscanf(intermediate, "%X %s %s %s", &locctr, label, opcode, operand);
     }
 
     long curr_pos = ftell(object);
