@@ -23,7 +23,7 @@ int main() {
         start_addr = (int)strtol(operand, NULL, 16);
         fprintf(object, "H^%s^%06X^%06X \n", label, start_addr, prog_length);
         fprintf(listing, "\t%s \t%s \t%s \n", label, opcode, operand);
-        fscanf(intermediate, "%04X %s %s %s", &locctr, label, opcode, operand);
+        fscanf(intermediate, "%X %s %s %s", &locctr, label, opcode, operand);
     }
 
     text_len = 0;
